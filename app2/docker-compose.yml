@@ -1,0 +1,27 @@
+services:
+  apache:
+    image: httpd:latest
+    container_name: apache-app1
+    volumes:
+      - ./starship-sorades-13k:/usr/local/apache2/htdocs
+    networks:
+      - webnet
+    ports:
+      - "8000:80"  # Mapea el puerto 80 del contenedor al puerto 8000 del host
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-load-balancer
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+   depends_on:
+     - apache
+       networks:
+      - webnet
+    ports:
+      - "8443:80"  # Mapea el puerto 80 del contenedor al puerto 8443 del host
+
+networks:
+  webnet:
+  name: pj9f4a87
+  driver: bridge 
