@@ -1,8 +1,0 @@
-# Imatge base a partir de la qual crearem la nostra
-FROM php:8.3-apache
-# Directori per defecte de treball
-WORKDIR /var/www/html
-# Copia la carpeta codi a "." de contenidor, a on "." és el WORKDIR
-COPY codi .
-# Exposa el port 80 del contenidor
-EXPOSE 80
